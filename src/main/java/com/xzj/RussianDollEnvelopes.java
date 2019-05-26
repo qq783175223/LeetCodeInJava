@@ -1,11 +1,15 @@
+package src.main.java.com.xzj;
+
+import java.util.Arrays;
+
 //时间复杂度O(N*logN)
-public class Solution {
+public class RussianDollEnvelopes {
     public int maxEnvelopes(int[][] envelopes) {
         if(envelopes==null||envelopes.length==0){
             return 0;
         }
         //将行如[[a1,b1],[a2,b2]]的元组按a从小到大排序,a相同则按b从大到小排序
-        Arrays.sort(envelopes,(a,b)->{
+        Arrays.sort(envelopes,(a, b)->{
             if(Integer.valueOf(a[0]).compareTo(Integer.valueOf(b[0]))!=0){
                 return Integer.valueOf(a[0]).compareTo(Integer.valueOf(b[0]));
             }else{
