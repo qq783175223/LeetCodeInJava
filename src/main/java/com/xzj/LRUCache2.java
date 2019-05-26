@@ -4,6 +4,7 @@ import java.util.Hashtable;
 import java.util.Map;
 
 /**
+ * 参考：https://zhuanlan.zhihu.com/p/34133067
  * Create by xuzhijun.online on 2019/5/26.
  */
 public class LRUCache2 {
@@ -20,9 +21,9 @@ public class LRUCache2 {
 
         head = new DLinkedNode();
         tail = new DLinkedNode();
-        head.after = tail;
+        head.next = tail;
         head.pre = null;
-        tail.after = null;
+        tail.next = null;
         tail.pre = head;
     }
 
@@ -63,11 +64,11 @@ public class LRUCache2 {
      * Always add the new node right after head;
      */
     private void addNode(DLinkedNode node) {
-        node.after = head.after;
+        node.next = head.next;
         node.pre = head;
 
-        head.after.pre = node;
-        head.after = node;
+        head.next.pre = node;
+        head.next = node;
     }
 
     /**
@@ -75,10 +76,10 @@ public class LRUCache2 {
      */
     private void removeNode(DLinkedNode node) {
         DLinkedNode pre = node.pre;
-        DLinkedNode after = node.after;
+        DLinkedNode next = node.next;
 
-        pre.after = after;
-        after.pre = pre;
+        pre.next = next;
+        next.pre = pre;
     }
 
     /**
@@ -117,7 +118,7 @@ class DLinkedNode {
     Integer key;
     Integer value;
     DLinkedNode pre;
-    DLinkedNode after;
+    DLinkedNode next;
 }
 
 /**
